@@ -4,674 +4,478 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Warung Jeger – by Jack Sunardi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --kuning: #FFD600;
-      --kuning-tua: #F5B800;
-      --kuning-muda: #FFF8D6;
-      --coklat: #3B1A00;
+      --kuning-tua: #E6C000;
+      --kuning-muda: #FFF9D6;
+      --coklat: #2E1200;
       --coklat-mid: #7A3D00;
-      --merah: #D62828;
+      --merah: #C41A1A;
       --putih: #FFFDF0;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--putih); color: var(--coklat); overflow-x: hidden; }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--putih);
-      color: var(--coklat);
-      overflow-x: hidden;
-    }
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px 100px; background: var(--kuning); overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227836/Hero_Jeger_lpsapm.jpg') center/cover no-repeat; opacity: 0.18; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,214,0,0.5) 0%, rgba(255,214,0,0.95) 100%); }
+    .hero > * { position: relative; z-index: 2; }
+    .hero-badge { display: inline-block; background: var(--coklat); color: var(--kuning); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 6px 20px; border-radius: 999px; margin-bottom: 22px; }
+    .hero h1 { font-family: 'Lilita One', cursive; font-size: clamp(4.5rem, 16vw, 10rem); line-height: 0.88; color: var(--coklat); text-shadow: 5px 5px 0 rgba(0,0,0,0.1); letter-spacing: -2px; }
+    .hero h1 span { color: var(--merah); display: block; }
+    .hero-sub { margin-top: 16px; font-size: 0.95rem; font-weight: 700; color: var(--coklat-mid); letter-spacing: 3px; text-transform: uppercase; }
+    .hero-icons { margin-top: 30px; font-size: 2rem; display: flex; gap: 10px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+    .btn-main { display: inline-flex; align-items: center; gap: 10px; background: var(--coklat); color: var(--kuning); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; padding: 14px 32px; border-radius: 999px; text-decoration: none; border: none; cursor: pointer; box-shadow: 4px 4px 0 rgba(0,0,0,0.25); transition: transform 0.15s, box-shadow 0.15s; margin-top: 36px; }
+    .btn-main:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(0,0,0,0.25); }
 
-    /* === NOISE TEXTURE OVERLAY === */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
-    }
-
-    /* === HERO === */
-    .hero {
-      background: var(--kuning);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 24px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227836/Hero_Jeger_lpsapm.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.22;
-      z-index: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 18px,
-        rgba(0,0,0,0.03) 18px,
-        rgba(0,0,0,0.03) 19px
-      );
-      z-index: 0;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--coklat);
-      color: var(--kuning);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 {
-      font-family: 'Lilita One', cursive;
-      font-size: clamp(4rem, 14vw, 9rem);
-      line-height: 0.92;
-      color: var(--coklat);
-      text-shadow: 6px 6px 0 rgba(0,0,0,0.12);
-      position: relative;
-      z-index: 1;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span {
-      color: var(--merah);
-      display: block;
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--coklat-mid);
-      margin-top: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-emoji-row {
-      margin-top: 32px;
-      font-size: 2.2rem;
-      display: flex;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .hero-cta {
-      margin-top: 36px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-telegram {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--coklat);
-      color: var(--kuning);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      padding: 14px 32px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 4px 4px 0 var(--coklat-mid);
-      transition: transform 0.15s, box-shadow 0.15s;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-telegram:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--coklat-mid);
-    }
-
-    .btn-telegram:active {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0 var(--coklat-mid);
-    }
-
-    /* === WAVE DIVIDER === */
-    .wave {
-      display: block;
-      width: 100%;
-      background: var(--kuning);
-      line-height: 0;
-    }
+    /* WAVE */
+    .wave { background: var(--kuning); line-height: 0; }
     .wave svg { display: block; }
 
-    /* === MENU SECTION === */
-    .menu-section {
-      background: var(--putih);
-      padding: 70px 24px 80px;
-    }
+    /* MENU */
+    .menu-section { background: var(--putih); padding: 70px 20px 130px; }
+    .section-header { text-align: center; margin-bottom: 36px; }
+    .section-pill { display: inline-block; background: var(--kuning); color: var(--coklat); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 5px 18px; border-radius: 999px; margin-bottom: 10px; }
+    .section-title { font-family: 'Lilita One', cursive; font-size: clamp(2rem, 6vw, 3.4rem); color: var(--coklat); line-height: 1.1; }
+    .section-hint { margin-top: 8px; font-size: 0.83rem; color: var(--coklat-mid); font-weight: 600; }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+    /* TABS */
+    .tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .tab-btn { background: #fff; border: 2px solid var(--coklat); border-radius: 999px; padding: 9px 20px; font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 800; color: var(--coklat); cursor: pointer; box-shadow: 3px 3px 0 var(--kuning-tua); transition: all 0.15s; white-space: nowrap; }
+    .tab-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--kuning-tua); }
+    .tab-btn.active { background: var(--coklat); color: var(--kuning); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--kuning-tua); }
 
-    .section-label {
-      display: inline-block;
-      background: var(--kuning);
-      color: var(--coklat);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
+    /* PANELS */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; max-width: 860px; margin: 0 auto; }
+    .menu-grid.narrow { max-width: 560px; }
 
-    .section-title {
-      font-family: 'Lilita One', cursive;
-      font-size: clamp(2rem, 6vw, 3.6rem);
-      color: var(--coklat);
-      line-height: 1.1;
-    }
+    /* CARDS */
+    .menu-card { background: #fff; border: 2px solid var(--coklat); border-radius: 18px; padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 3px 3px 0 var(--kuning-tua); transition: transform 0.15s, box-shadow 0.15s, background 0.15s; cursor: pointer; user-select: none; }
+    .menu-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--kuning-tua); }
+    .menu-card.selected { background: var(--kuning-muda); border-color: var(--kuning-tua); }
+    .menu-icon { font-size: 1.9rem; width: 48px; height: 48px; background: var(--kuning-muda); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1.5px solid var(--kuning-tua); transition: background 0.15s; }
+    .menu-card.selected .menu-icon { background: var(--kuning); }
+    .menu-info { flex: 1; min-width: 0; }
+    .menu-name { font-weight: 800; font-size: 0.93rem; color: var(--coklat); }
+    .menu-desc { font-size: 0.74rem; color: var(--coklat-mid); margin-top: 2px; font-weight: 600; }
+    .qty-control { display: none; align-items: center; gap: 8px; margin-top: 10px; }
+    .menu-card.selected .qty-control { display: flex; }
+    .qty-btn { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--coklat); background: #fff; font-weight: 900; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.1s; flex-shrink: 0; }
+    .qty-btn:hover { background: var(--kuning); }
+    .qty-num { font-weight: 900; font-size: 0.9rem; min-width: 18px; text-align: center; }
+    .menu-check { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #ccc; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; font-size: 0.85rem; color: transparent; margin-top: 2px; }
+    .menu-card.selected .menu-check { background: var(--coklat); border-color: var(--coklat); color: var(--kuning); }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    /* ORDER BAR */
+    .order-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px); z-index: 1000; background: var(--coklat); color: var(--kuning); border-radius: 999px; padding: 12px 14px 12px 20px; display: flex; align-items: center; gap: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.35); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space: nowrap; min-width: 240px; justify-content: space-between; }
+    .order-bar.show { transform: translateX(-50%) translateY(0); }
+    .order-bar-left { display: flex; align-items: center; gap: 10px; }
+    .order-badge { background: var(--kuning); color: var(--coklat); font-weight: 900; font-size: 0.85rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .order-bar-label { font-weight: 800; font-size: 0.9rem; }
+    .order-bar-cta { background: var(--kuning); color: var(--coklat); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; padding: 8px 18px; border-radius: 999px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: opacity 0.15s; }
+    .order-bar-cta:hover { opacity: 0.85; }
 
-    .menu-card {
-      background: #fff;
-      border: 2.5px solid var(--coklat);
-      border-radius: 20px;
-      padding: 24px 22px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      box-shadow: 4px 4px 0 var(--kuning-tua);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 2000; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: var(--putih); border-radius: 28px 28px 0 0; padding: 28px 24px 36px; width: 100%; max-width: 480px; transform: translateY(40px); transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1); }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-handle { width: 40px; height: 4px; background: #ddd; border-radius: 99px; margin: 0 auto 22px; }
+    .modal-title { font-family: 'Lilita One', cursive; font-size: 1.5rem; color: var(--coklat); margin-bottom: 18px; }
+    .order-list { list-style: none; margin-bottom: 18px; }
+    .order-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1.5px dashed #e0d8c8; font-weight: 700; font-size: 0.92rem; }
+    .order-item-left { display: flex; align-items: center; gap: 10px; }
+    .order-item-qty { background: var(--kuning); color: var(--coklat); font-weight: 900; font-size: 0.78rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .order-item-remove { background: none; border: none; color: #bbb; font-size: 1.1rem; cursor: pointer; padding: 0 4px; line-height: 1; }
+    .order-item-remove:hover { color: var(--merah); }
+    .note-label { font-weight: 800; font-size: 0.82rem; color: var(--coklat-mid); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .note-input { width: 100%; border: 2px solid var(--coklat); border-radius: 14px; padding: 12px 14px; font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--coklat); background: #fff; resize: none; outline: none; margin-bottom: 18px; }
+    .note-input:focus { border-color: var(--kuning-tua); }
+    .btn-send { width: 100%; background: var(--coklat); color: var(--kuning); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; padding: 16px; border-radius: 999px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 4px 4px 0 var(--kuning-tua); transition: transform 0.15s, box-shadow 0.15s; }
+    .btn-send:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--kuning-tua); }
+    .btn-cancel { width: 100%; background: none; border: none; color: var(--coklat-mid); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.88rem; margin-top: 10px; cursor: pointer; padding: 8px; }
+    .btn-cancel:hover { text-decoration: underline; }
 
-    .menu-card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 7px 7px 0 var(--kuning-tua);
-    }
+    /* ABOUT */
+    .about-band { background: var(--coklat); padding: 70px 24px; text-align: center; position: relative; overflow: hidden; }
+    .about-band::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 24px, rgba(255,214,0,0.04) 24px, rgba(255,214,0,0.04) 25px); }
+    .about-band h2 { font-family: 'Lilita One', cursive; font-size: clamp(1.8rem,5vw,3rem); color: var(--kuning); position: relative; z-index: 1; }
+    .about-band p { max-width: 520px; margin: 14px auto 0; color: rgba(255,253,240,0.75); font-size: 1rem; font-weight: 600; line-height: 1.7; position: relative; z-index: 1; }
 
-    .menu-icon {
-      font-size: 2.4rem;
-      width: 56px;
-      height: 56px;
-      background: var(--kuning-muda);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 2px solid var(--kuning-tua);
-    }
+    /* OWNER */
+    .owner-section { background: var(--kuning); padding: 80px 24px; text-align: center; position: relative; overflow: hidden; border-top: 3px solid var(--kuning-tua); }
+    .owner-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.025) 20px, rgba(0,0,0,0.025) 21px); }
+    .owner-card { position: relative; z-index: 1; display: inline-flex; flex-direction: column; align-items: center; gap: 14px; background: #fff; border: 3px solid var(--coklat); border-radius: 28px; padding: 44px 52px 36px; box-shadow: 6px 6px 0 var(--coklat); max-width: 420px; }
+    .owner-photo-wrap { position: relative; }
+    .owner-photo-wrap::before { content: ''; position: absolute; inset: -8px; border-radius: 50%; background: var(--kuning); border: 3px solid var(--coklat); z-index: 0; }
+    .owner-photo { width: 170px; height: 170px; border-radius: 50%; border: 4px solid var(--coklat); object-fit: cover; object-position: top center; position: relative; z-index: 1; display: block; }
+    .chef-badge { position: absolute; bottom: 4px; right: 4px; z-index: 2; background: var(--kuning); border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 2.5px solid var(--coklat); }
+    .owner-name { font-family: 'Lilita One', cursive; font-size: 1.8rem; color: var(--coklat); }
+    .owner-role { display: inline-block; background: var(--coklat); color: var(--kuning); font-size: 0.7rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 999px; }
+    .owner-quote { font-size: 0.9rem; font-weight: 600; color: var(--coklat-mid); line-height: 1.65; font-style: italic; max-width: 280px; text-align: center; }
 
-    .menu-name {
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--coklat);
-      line-height: 1.3;
-    }
+    /* CONTACT */
+    .contact-section { background: var(--kuning-muda); padding: 70px 24px 80px; text-align: center; border-top: 3px solid var(--kuning-tua); }
+    .contact-card { display: inline-flex; flex-direction: column; align-items: center; gap: 14px; background: #fff; border: 2.5px solid var(--coklat); border-radius: 24px; padding: 36px 48px; box-shadow: 5px 5px 0 var(--kuning-tua); }
+    .contact-num { font-family: 'Lilita One', cursive; font-size: 1.5rem; color: var(--coklat); }
+    .contact-hint { font-size: 0.78rem; color: var(--coklat-mid); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
 
-    .menu-desc {
-      font-size: 0.8rem;
-      color: var(--coklat-mid);
-      margin-top: 3px;
-      font-weight: 600;
-    }
+    /* FOOTER */
+    footer { background: var(--coklat); color: rgba(255,253,240,0.45); text-align: center; padding: 20px 24px; font-size: 0.76rem; font-weight: 600; }
+    footer span { color: var(--kuning); }
 
-    /* === ABOUT BAND === */
-    .about-band {
-      background: var(--coklat);
-      padding: 60px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .about-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 24px,
-        rgba(255,214,0,0.04) 24px,
-        rgba(255,214,0,0.04) 25px
-      );
-    }
-
-    .about-band h2 {
-      font-family: 'Lilita One', cursive;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      color: var(--kuning);
-      position: relative;
-      z-index: 1;
-    }
-
-    .about-band p {
-      max-width: 520px;
-      margin: 16px auto 0;
-      color: rgba(255,253,240,0.8);
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.7;
-      position: relative;
-      z-index: 1;
-    }
-
-    .about-band .owner-tag {
-      display: inline-block;
-      margin-top: 24px;
-      background: var(--kuning);
-      color: var(--coklat);
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 8px 22px;
-      border-radius: 999px;
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* === CONTACT === */
-    .contact-section {
-      background: var(--kuning-muda);
-      padding: 70px 24px;
-      text-align: center;
-      border-top: 3px solid var(--kuning-tua);
-    }
-
-    .contact-section .section-title {
-      margin-bottom: 28px;
-    }
-
-    .contact-card {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      background: #fff;
-      border: 2.5px solid var(--coklat);
-      border-radius: 24px;
-      padding: 36px 48px;
-      box-shadow: 5px 5px 0 var(--kuning-tua);
-    }
-
-    .contact-num {
-      font-family: 'Lilita One', cursive;
-      font-size: 1.5rem;
-      color: var(--coklat);
-      letter-spacing: 1px;
-    }
-
-    .contact-hint {
-      font-size: 0.82rem;
-      color: var(--coklat-mid);
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* === FOOTER === */
-    footer {
-      background: var(--coklat);
-      color: rgba(255,253,240,0.5);
-      text-align: center;
-      padding: 20px 24px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    footer span {
-      color: var(--kuning);
-    }
-
-    /* === OWNER SECTION === */
-    .owner-section {
-      background: var(--kuning);
-      padding: 80px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-top: 3px solid var(--kuning-tua);
-    }
-
-    .owner-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 20px,
-        rgba(0,0,0,0.025) 20px,
-        rgba(0,0,0,0.025) 21px
-      );
-    }
-
-    .owner-card {
-      position: relative;
-      z-index: 1;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      background: #fff;
-      border: 3px solid var(--coklat);
-      border-radius: 28px;
-      padding: 44px 52px 36px;
-      box-shadow: 6px 6px 0 var(--coklat);
-      max-width: 420px;
-    }
-
-    .owner-photo-wrap {
-      position: relative;
-    }
-
-    .owner-photo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: var(--kuning);
-      border: 3px solid var(--coklat);
-      z-index: 0;
-    }
-
-    .owner-photo-wrap::after {
-      content: '👨‍🍳';
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      font-size: 1.4rem;
-      z-index: 2;
-      background: var(--kuning);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2.5px solid var(--coklat);
-    }
-
-    .owner-photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 4px solid var(--coklat);
-      object-fit: cover;
-      position: relative;
-      z-index: 1;
-      display: block;
-    }
-
-    .owner-name {
-      font-family: 'Lilita One', cursive;
-      font-size: 1.7rem;
-      color: var(--coklat);
-      line-height: 1.1;
-    }
-
-    .owner-role {
-      display: inline-block;
-      background: var(--coklat);
-      color: var(--kuning);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 999px;
-      margin-top: -8px;
-    }
-
-    .owner-quote {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--coklat-mid);
-      line-height: 1.6;
-      font-style: italic;
-      max-width: 280px;
-    }
-
-    .owner-section .section-header {
-      margin-bottom: 36px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* === SCROLL ANIMATIONS === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 480px) {
+      .contact-card { padding: 28px 20px; }
+      .owner-card { padding: 36px 24px 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-badge">✦ Masakan Rumahan ✦</div>
-    <h1>WARUNG<span>JEGER</span></h1>
-    <p class="hero-sub">by Jack Sunardi</p>
-    <div class="hero-emoji-row">🍗 🍜 🍳 🥔 🌶️</div>
-    <div class="hero-cta">
-      <a href="https://t.me/+6281529532976" class="btn-telegram" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21.94 3.26L2.5 10.94c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.37-7.17c.54-.33 1.03-.15.63.2L8.7 16.3l-.35 5.05c.51 0 .73-.24 1.01-.5l2.42-2.34 5.02 3.7c.93.51 1.59.25 1.82-.86l3.3-15.55c.34-1.34-.51-1.95-1.98-1.54z" fill="currentColor"/></svg>
-        Pesan via Telegram
-      </a>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-badge">✦ Masakan Rumahan Khas Jakarta ✦</div>
+  <h1>WARUNG<span>JEGER</span></h1>
+  <p class="hero-sub">by Jack Sunardi</p>
+  <div class="hero-icons">🍗 🍜 🍳 🥔 🌶️</div>
+  <a href="#menu" class="btn-main">
+    Lihat Menu
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
 
-  <!-- WAVE -->
-  <div class="wave">
-    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFDF0"/>
-    </svg>
+<!-- WAVE -->
+<div class="wave">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFDF0"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-header reveal">
+    <div class="section-pill">🍽️ Menu Andalan</div>
+    <h2 class="section-title">Pilih, Klik, Pesan!</h2>
+    <p class="section-hint">Centang menu yang kamu mau → lalu kirim langsung ke Telegram.</p>
   </div>
 
-  <!-- MENU -->
-  <section class="menu-section">
-    <div class="section-header reveal">
-      <div class="section-label">🍽️ Menu Andalan</div>
-      <h2 class="section-title">Enak, Murah, Bikin Kenyang</h2>
-    </div>
+  <div class="tabs reveal">
+    <button class="tab-btn active" data-tab="berat">🍗 Makanan Berat</button>
+    <button class="tab-btn" data-tab="sayur">🥗 Sayuran</button>
+    <button class="tab-btn" data-tab="goreng">🫓 Gorengan & Lainnya</button>
+  </div>
 
+  <!-- TAB: MAKANAN BERAT -->
+  <div class="tab-panel active" id="tab-berat">
     <div class="menu-grid">
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="1" data-name="Ayam Goreng">
         <div class="menu-icon">🍗</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Ayam Goreng</div>
           <div class="menu-desc">Renyah di luar, juicy di dalam</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="2" data-name="Soup Ayam">
         <div class="menu-icon">🍲</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Soup Ayam</div>
           <div class="menu-desc">Hangat, gurih, bikin nyaman</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="3" data-name="Perkedel Kentang">
         <div class="menu-icon">🥔</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Perkedel Kentang</div>
           <div class="menu-desc">Goreng crispy, lembut di dalam</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="4" data-name="Indomie Goreng">
         <div class="menu-icon">🍜</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Indomie Goreng</div>
           <div class="menu-desc">Legend never dies</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="5" data-name="Telur Ceplok">
         <div class="menu-icon">🍳</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Telur Ceplok</div>
           <div class="menu-desc">Simple tapi nggak pernah salah</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
-        <div class="menu-icon">🟡</div>
-        <div>
-          <div class="menu-name">Gorengan</div>
-          <div class="menu-desc">Tempe, tahu, bakwan — panas-panas</div>
+      <div class="menu-card" data-id="6" data-name="Pepes Tongkol">
+        <div class="menu-icon">🐟</div>
+        <div class="menu-info">
+          <div class="menu-name">Pepes Tongkol</div>
+          <div class="menu-desc">Ikan bumbu pedas, wangi kemangi</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+    </div>
+  </div>
+
+  <!-- TAB: SAYURAN -->
+  <div class="tab-panel" id="tab-sayur">
+    <div class="menu-grid">
+      <div class="menu-card" data-id="7" data-name="Sayur Lodeh">
         <div class="menu-icon">🥥</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Sayur Lodeh</div>
           <div class="menu-desc">Santan gurih, sayur lengkap</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="8" data-name="Urap Sayur">
         <div class="menu-icon">🥬</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Urap Sayur</div>
           <div class="menu-desc">Segar, kelapa berbumbu rempah</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="9" data-name="Pepes Tahu">
         <div class="menu-icon">🌿</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Pepes Tahu</div>
           <div class="menu-desc">Dibungkus daun, harum dan lembut</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
-        <div class="menu-icon">🐟</div>
-        <div>
-          <div class="menu-name">Pepes Tongkol</div>
-          <div class="menu-desc">Ikan bumbu pedas, wangi daun kemangi</div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
+      <div class="menu-card" data-id="10" data-name="Tumis Kangkung">
         <div class="menu-icon">🌱</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Tumis Kangkung</div>
           <div class="menu-desc">Pedas, crunchy, bikin nambah nasi</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
-      <div class="menu-card reveal">
+    </div>
+  </div>
+
+  <!-- TAB: GORENGAN -->
+  <div class="tab-panel" id="tab-goreng">
+    <div class="menu-grid narrow">
+      <div class="menu-card" data-id="11" data-name="Gorengan">
+        <div class="menu-icon">🟡</div>
+        <div class="menu-info">
+          <div class="menu-name">Gorengan</div>
+          <div class="menu-desc">Tempe, tahu, bakwan — panas-panas</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
+        </div>
+        <div class="menu-check">✓</div>
+      </div>
+      <div class="menu-card" data-id="12" data-name="Telor Orak-Arik Sosis">
         <div class="menu-icon">🍳</div>
-        <div>
+        <div class="menu-info">
           <div class="menu-name">Telor Orak-Arik Sosis</div>
           <div class="menu-desc">Comfort food sejati, nggak ada duanya</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
+        <div class="menu-check">✓</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section class="about-band">
-    <h2 class="reveal">Masakan Rumahan,<br/>Rasa Bintang Lima 🌟</h2>
-    <p class="reveal">Warung Jeger hadir buat kamu yang kangen makan enak kayak di rumah. Bahan segar, dimasak dengan cinta, harga bersahabat. Nggak perlu jauh-jauh, jeger selalu ada buat kamu.</p>
-    <div class="owner-tag reveal">👨‍🍳 Jack Sunardi</div>
-  </section>
+<!-- ABOUT -->
+<section class="about-band">
+  <h2 class="reveal">Masakan Rumahan,<br/>Rasa Bintang Lima 🌟</h2>
+  <p class="reveal">Warung Jeger hadir buat kamu yang kangen makan enak kayak di rumah. Bahan segar, dimasak dengan cinta, harga bersahabat.</p>
+</section>
 
-  <!-- CONTACT -->
-  <section class="contact-section">
-    <div class="section-header reveal">
-      <div class="section-label">📱 Hubungi Kami</div>
-      <h2 class="section-title">Mau Pesan?</h2>
+<!-- OWNER -->
+<section class="owner-section">
+  <div class="section-header reveal" style="position:relative;z-index:1;margin-bottom:36px;">
+    <div class="section-pill">👨‍🍳 Si Empunya Warung</div>
+    <h2 class="section-title">Meet the Boss</h2>
+  </div>
+  <div class="owner-card reveal">
+    <div class="owner-photo-wrap">
+      <img class="owner-photo" src="https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227891/preview_itmdfm.webp" alt="Jack Sunardi" />
+      <div class="chef-badge">👨‍🍳</div>
     </div>
-    <div class="contact-card reveal">
-      <div class="contact-hint">Telegram / WhatsApp</div>
-      <div class="contact-num">+62 815-2953-2976</div>
-      <a href="https://t.me/+6281529532976" class="btn-telegram" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.94 3.26L2.5 10.94c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.37-7.17c.54-.33 1.03-.15.63.2L8.7 16.3l-.35 5.05c.51 0 .73-.24 1.01-.5l2.42-2.34 5.02 3.7c.93.51 1.59.25 1.82-.86l3.3-15.55c.34-1.34-.51-1.95-1.98-1.54z" fill="currentColor"/></svg>
-        Chat Sekarang
-      </a>
-    </div>
-  </section>
+    <div class="owner-name">Jack Sunardi</div>
+    <div class="owner-role">Founder & Owner</div>
+    <p class="owner-quote">"Masak buat kamu itu bukan kerjaan, itu panggilan hati. Tiap suapan harus ada ceritanya."</p>
+  </div>
+</section>
 
-  <!-- OWNER -->
-  <section class="owner-section">
-    <div class="section-header reveal">
-      <div class="section-label">👨‍🍳 Si Empunya Warung</div>
-      <h2 class="section-title">Meet the Boss</h2>
-    </div>
-    <div class="owner-card reveal">
-      <div class="owner-photo-wrap">
-        <img class="owner-photo"
-             src="https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227891/preview_itmdfm.webp"
-             alt="Jack Sunardi - Owner Warung Jeger" />
-      </div>
-      <div>
-        <div class="owner-name">Jack Sunardi</div>
-        <div class="owner-role">Founder & Owner</div>
-      </div>
-      <p class="owner-quote">"Masak buat kamu itu bukan kerjaan, itu panggilan hati. Tiap suapan harus ada ceritanya."</p>
-    </div>
-  </section>
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="section-header reveal">
+    <div class="section-pill">📱 Hubungi Kami</div>
+    <h2 class="section-title">Mau Pesan?</h2>
+  </div>
+  <div class="contact-card reveal">
+    <div class="contact-hint">Telegram / WhatsApp</div>
+    <div class="contact-num">+62 815-2953-2976</div>
+    <a href="https://t.me/+6281529532976" class="btn-main" target="_blank" style="margin-top:0;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.94 3.26L2.5 10.94c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.37-7.17c.54-.33 1.03-.15.63.2L8.7 16.3l-.35 5.05c.51 0 .73-.24 1.01-.5l2.42-2.34 5.02 3.7c.93.51 1.59.25 1.82-.86l3.3-15.55c.34-1.34-.51-1.95-1.98-1.54z" fill="currentColor"/></svg>
+      Chat Sekarang
+    </a>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 <span>Warung Jeger</span> — by Jack Sunardi. Semua hak dilindungi perut kenyang.
-  </footer>
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 <span>Warung Jeger</span> — by Jack Sunardi. Semua hak dilindungi perut kenyang.
+</footer>
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
-        }
+<!-- FLOATING ORDER BAR -->
+<div class="order-bar" id="orderBar">
+  <div class="order-bar-left">
+    <div class="order-badge" id="orderCount">0</div>
+    <span class="order-bar-label">Item dipilih</span>
+  </div>
+  <button class="order-bar-cta" id="openModal">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21.94 3.26L2.5 10.94c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.37-7.17c.54-.33 1.03-.15.63.2L8.7 16.3l-.35 5.05c.51 0 .73-.24 1.01-.5l2.42-2.34 5.02 3.7c.93.51 1.59.25 1.82-.86l3.3-15.55c.34-1.34-.51-1.95-1.98-1.54z" fill="currentColor"/></svg>
+    Pesan Sekarang
+  </button>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🧾 Ringkasan Pesanan</div>
+    <ul class="order-list" id="orderList"></ul>
+    <div class="note-label">📝 Catatan / Alamat (opsional)</div>
+    <textarea class="note-input" id="orderNote" rows="3" placeholder="Contoh: pedas ya kak, antar ke Jl. Merdeka No.5..."></textarea>
+    <button class="btn-send" id="btnSend">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.94 3.26L2.5 10.94c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.37-7.17c.54-.33 1.03-.15.63.2L8.7 16.3l-.35 5.05c.51 0 .73-.24 1.01-.5l2.42-2.34 5.02 3.7c.93.51 1.59.25 1.82-.86l3.3-15.55c.34-1.34-.51-1.95-1.98-1.54z" fill="currentColor"/></svg>
+      Kirim ke Telegram
+    </button>
+    <button class="btn-cancel" id="btnCancel">Tutup</button>
+  </div>
+</div>
+
+<script>
+  const cart = {};
+
+  // TABS
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // MENU CARDS
+  document.querySelectorAll('.menu-card').forEach(card => {
+    const id = card.dataset.id;
+    const name = card.dataset.name;
+    const qtyEl = card.querySelector('.qty-num');
+
+    card.addEventListener('click', (e) => {
+      if (e.target.classList.contains('qty-btn')) return;
+      if (card.classList.contains('selected')) {
+        card.classList.remove('selected');
+        delete cart[id];
+      } else {
+        card.classList.add('selected');
+        qtyEl.textContent = '1';
+        cart[id] = { name, qty: 1 };
+      }
+      updateBar();
+    });
+
+    card.querySelector('.qty-btn.minus').addEventListener('click', (e) => {
+      e.stopPropagation();
+      let q = parseInt(qtyEl.textContent);
+      if (q > 1) { q--; qtyEl.textContent = q; cart[id].qty = q; }
+      else { card.classList.remove('selected'); delete cart[id]; }
+      updateBar();
+    });
+
+    card.querySelector('.qty-btn.plus').addEventListener('click', (e) => {
+      e.stopPropagation();
+      let q = parseInt(qtyEl.textContent) + 1;
+      qtyEl.textContent = q;
+      if (cart[id]) cart[id].qty = q;
+      updateBar();
+    });
+  });
+
+  function updateBar() {
+    const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+    document.getElementById('orderCount').textContent = total;
+    document.getElementById('orderBar').classList.toggle('show', total > 0);
+  }
+
+  // MODAL
+  document.getElementById('openModal').addEventListener('click', openModal);
+  document.getElementById('btnCancel').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('open'));
+  document.getElementById('modalOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('open');
+  });
+
+  function openModal() {
+    const list = document.getElementById('orderList');
+    list.innerHTML = '';
+    Object.entries(cart).forEach(([id, item]) => {
+      const li = document.createElement('li');
+      li.className = 'order-item';
+      li.innerHTML = `<div class="order-item-left"><span class="order-item-qty">${item.qty}</span><span>${item.name}</span></div><button class="order-item-remove" data-id="${id}">✕</button>`;
+      li.querySelector('.order-item-remove').addEventListener('click', () => {
+        document.querySelectorAll('.menu-card').forEach(c => { if (c.dataset.id === id) c.classList.remove('selected'); });
+        delete cart[id];
+        updateBar();
+        if (Object.keys(cart).length === 0) document.getElementById('modalOverlay').classList.remove('open');
+        else openModal();
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
+      list.appendChild(li);
+    });
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  // SEND
+  document.getElementById('btnSend').addEventListener('click', () => {
+    const items = Object.values(cart);
+    if (!items.length) return;
+    const note = document.getElementById('orderNote').value.trim();
+    let msg = '🍽️ *Halo Warung Jeger!*\n\nSaya mau pesan:\n\n';
+    items.forEach(i => { msg += `• ${i.name} x${i.qty}\n`; });
+    if (note) msg += `\n📝 Catatan: ${note}`;
+    msg += '\n\nTerima kasih! 🙏';
+    window.open('https://t.me/+6281529532976?text=' + encodeURIComponent(msg), '_blank');
+  });
+
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
