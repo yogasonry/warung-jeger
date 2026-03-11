@@ -65,6 +65,7 @@
     .menu-info { flex: 1; min-width: 0; }
     .menu-name { font-weight: 800; font-size: 0.93rem; color: var(--coklat); }
     .menu-desc { font-size: 0.74rem; color: var(--coklat-mid); margin-top: 2px; font-weight: 600; }
+    .menu-avail { font-size: 0.68rem; color: #aaa; margin-top: 4px; font-weight: 600; font-style: italic; }
     .qty-control { display: none; align-items: center; gap: 8px; margin-top: 10px; }
     .menu-card.selected .qty-control { display: flex; }
     .qty-btn { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--coklat); background: #fff; font-weight: 900; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.1s; flex-shrink: 0; }
@@ -72,6 +73,91 @@
     .qty-num { font-weight: 900; font-size: 0.9rem; min-width: 18px; text-align: center; }
     .menu-check { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #ccc; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; font-size: 0.85rem; color: transparent; margin-top: 2px; }
     .menu-card.selected .menu-check { background: var(--coklat); border-color: var(--coklat); color: var(--kuning); }
+
+
+    /* ===================== ANIMATIONS ===================== */
+
+    /* 1. STAMP — hero title */
+    @keyframes stamp {
+      0%   { transform: scale(1.4); opacity: 0; filter: blur(2px); }
+      60%  { transform: scale(0.96); opacity: 1; filter: blur(0); }
+      80%  { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .hero h1 { animation: stamp 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+    .hero h1 span { animation: stamp 0.7s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+
+    /* 2. HERO elements stagger in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge { animation: fadeUp 0.5s ease 0.05s both; }
+    .hero-sub   { animation: fadeUp 0.5s ease 0.55s both; }
+    .hero-icons { animation: fadeUp 0.5s ease 0.7s both, float 3s ease-in-out 1.2s infinite; }
+    .hero .btn-main { animation: fadeUp 0.5s ease 0.85s both; }
+
+    /* 3. POP — card select */
+    @keyframes cardPop {
+      0%   { transform: translate(0,0) scale(1); }
+      40%  { transform: translate(-3px,-3px) scale(1.05); }
+      70%  { transform: translate(-1px,-1px) scale(0.98); }
+      100% { transform: translate(-2px,-2px) scale(1); }
+    }
+    .menu-card.pop { animation: cardPop 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+    /* 4. ICON WIGGLE on hover */
+    @keyframes wiggle {
+      0%,100% { transform: rotate(0deg) scale(1); }
+      25%  { transform: rotate(-14deg) scale(1.18); }
+      75%  { transform: rotate(14deg) scale(1.18); }
+    }
+    .menu-card:hover .menu-icon { animation: wiggle 0.4s ease; }
+
+    /* 5. TAB PANEL slide fade */
+    @keyframes tabIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .tab-panel.active { animation: tabIn 0.28s ease both; }
+
+    /* 6. BADGE BOUNCE */
+    @keyframes badgeBounce {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.5); }
+      70%  { transform: scale(0.88); }
+      100% { transform: scale(1); }
+    }
+    .order-badge.bounce { animation: badgeBounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* 7. SHIMMER on CTA button */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .order-bar-cta {
+      background: linear-gradient(90deg, var(--kuning) 30%, #fff3a0 50%, var(--kuning) 70%) !important;
+      background-size: 200% auto !important;
+      animation: shimmer 2.5s linear infinite;
+    }
+
+    /* 8. +1 FLOAT */
+    @keyframes floatUp {
+      0%   { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-40px) scale(0.75); }
+    }
+    .plus-float {
+      position: fixed;
+      font-family: 'Lilita One', cursive;
+      font-size: 1rem;
+      color: var(--coklat);
+      background: var(--kuning);
+      border-radius: 999px;
+      padding: 2px 10px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUp 0.65s ease forwards;
+    }
 
     /* ORDER BAR */
     .order-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px); z-index: 1000; background: var(--coklat); color: var(--kuning); border-radius: 999px; padding: 12px 14px 12px 20px; display: flex; align-items: center; gap: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.35); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space: nowrap; min-width: 240px; justify-content: space-between; }
@@ -176,6 +262,7 @@
     <button class="tab-btn active" data-tab="berat">🍗 Makanan Berat</button>
     <button class="tab-btn" data-tab="sayur">🥗 Sayuran</button>
     <button class="tab-btn" data-tab="goreng">🫓 Gorengan & Lainnya</button>
+    <button class="tab-btn" data-tab="minum">🥤 Minuman</button>
   </div>
 
   <!-- TAB: MAKANAN BERAT -->
@@ -186,6 +273,7 @@
         <div class="menu-info">
           <div class="menu-name">Ayam Goreng</div>
           <div class="menu-desc">Renyah di luar, juicy di dalam</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -195,6 +283,7 @@
         <div class="menu-info">
           <div class="menu-name">Soup Ayam</div>
           <div class="menu-desc">Hangat, gurih, bikin nyaman</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -204,6 +293,7 @@
         <div class="menu-info">
           <div class="menu-name">Perkedel Kentang</div>
           <div class="menu-desc">Goreng crispy, lembut di dalam</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -213,6 +303,7 @@
         <div class="menu-info">
           <div class="menu-name">Indomie Goreng</div>
           <div class="menu-desc">Legend never dies</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -222,6 +313,7 @@
         <div class="menu-info">
           <div class="menu-name">Telur Ceplok</div>
           <div class="menu-desc">Simple tapi nggak pernah salah</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -231,6 +323,7 @@
         <div class="menu-info">
           <div class="menu-name">Pepes Tongkol</div>
           <div class="menu-desc">Ikan bumbu pedas, wangi kemangi</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -246,6 +339,7 @@
         <div class="menu-info">
           <div class="menu-name">Sayur Lodeh</div>
           <div class="menu-desc">Santan gurih, sayur lengkap</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -255,6 +349,7 @@
         <div class="menu-info">
           <div class="menu-name">Urap Sayur</div>
           <div class="menu-desc">Segar, kelapa berbumbu rempah</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -264,6 +359,7 @@
         <div class="menu-info">
           <div class="menu-name">Pepes Tahu</div>
           <div class="menu-desc">Dibungkus daun, harum dan lembut</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -273,6 +369,7 @@
         <div class="menu-info">
           <div class="menu-name">Tumis Kangkung</div>
           <div class="menu-desc">Pedas, crunchy, bikin nambah nasi</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -288,6 +385,7 @@
         <div class="menu-info">
           <div class="menu-name">Gorengan</div>
           <div class="menu-desc">Tempe, tahu, bakwan — panas-panas</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -297,6 +395,53 @@
         <div class="menu-info">
           <div class="menu-name">Telor Orak-Arik Sosis</div>
           <div class="menu-desc">Comfort food sejati, nggak ada duanya</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
+        </div>
+        <div class="menu-check">✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: MINUMAN -->
+  <div class="tab-panel" id="tab-minum">
+    <div class="menu-grid narrow">
+      <div class="menu-card" data-id="13" data-name="Es Teh">
+        <div class="menu-icon">🧋</div>
+        <div class="menu-info">
+          <div class="menu-name">Es Teh</div>
+          <div class="menu-desc">Seger, manis, cocok buat semua menu</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
+        </div>
+        <div class="menu-check">✓</div>
+      </div>
+      <div class="menu-card" data-id="14" data-name="Es Nutri Sari">
+        <div class="menu-icon">🍊</div>
+        <div class="menu-info">
+          <div class="menu-name">Es Nutri Sari</div>
+          <div class="menu-desc">Dingin, fruity, bikin melek</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
+        </div>
+        <div class="menu-check">✓</div>
+      </div>
+      <div class="menu-card" data-id="15" data-name="Extra Joss Susu">
+        <div class="menu-icon">💪</div>
+        <div class="menu-info">
+          <div class="menu-name">Extra Joss (Susu)</div>
+          <div class="menu-desc">Energi nambah, rasa creamy</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
+          <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
+        </div>
+        <div class="menu-check">✓</div>
+      </div>
+      <div class="menu-card" data-id="16" data-name="Es Blewah">
+        <div class="menu-icon">🍈</div>
+        <div class="menu-info">
+          <div class="menu-name">Es Blewah</div>
+          <div class="menu-desc">Khas warung rumahan, adem banget</div>
+          <div class="menu-avail">⏳ Selama persediaan masih ada</div>
           <div class="qty-control"><button class="qty-btn minus">−</button><span class="qty-num">1</span><button class="qty-btn plus">+</button></div>
         </div>
         <div class="menu-check">✓</div>
@@ -401,12 +546,18 @@
       if (card.classList.contains('selected')) {
         card.classList.remove('selected');
         delete cart[id];
+        updateBar();
       } else {
         card.classList.add('selected');
+        // pop animation
+        card.classList.remove('pop');
+        void card.offsetWidth;
+        card.classList.add('pop');
+        card.addEventListener('animationend', () => card.classList.remove('pop'), { once: true });
         qtyEl.textContent = '1';
         cart[id] = { name, qty: 1 };
+        updateBar(e.clientX, e.clientY - 40);
       }
-      updateBar();
     });
 
     card.querySelector('.qty-btn.minus').addEventListener('click', (e) => {
@@ -422,14 +573,30 @@
       let q = parseInt(qtyEl.textContent) + 1;
       qtyEl.textContent = q;
       if (cart[id]) cart[id].qty = q;
-      updateBar();
+      updateBar(e.clientX, e.clientY - 40);
     });
   });
 
-  function updateBar() {
+  function updateBar(triggerX, triggerY) {
     const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
-    document.getElementById('orderCount').textContent = total;
+    const badge = document.getElementById('orderCount');
+    badge.textContent = total;
     document.getElementById('orderBar').classList.toggle('show', total > 0);
+    // Badge bounce
+    badge.classList.remove('bounce');
+    void badge.offsetWidth;
+    badge.classList.add('bounce');
+    badge.addEventListener('animationend', () => badge.classList.remove('bounce'), { once: true });
+    // +1 float label
+    if (triggerX && triggerY && total > 0) {
+      const el = document.createElement('div');
+      el.className = 'plus-float';
+      el.textContent = '+1';
+      el.style.left = triggerX + 'px';
+      el.style.top  = triggerY + 'px';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
   }
 
   // MODAL
