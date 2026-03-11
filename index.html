@@ -21,9 +21,10 @@
 
     /* HERO */
     .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px 100px; background: var(--kuning); overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227836/Hero_Jeger_lpsapm.jpg') center/cover no-repeat; opacity: 0.18; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,214,0,0.5) 0%, rgba(255,214,0,0.95) 100%); }
+    .hero-bg { position: absolute; inset: 0; background: url('https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227836/Hero_Jeger_lpsapm.jpg') center/cover no-repeat; opacity: 0.45; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,214,0,0.25) 0%, rgba(255,214,0,0.82) 100%); }
     .hero > * { position: relative; z-index: 2; }
+    .hero-bg, .hero-overlay { position: absolute !important; z-index: 0; }
     .hero-badge { display: inline-block; background: var(--coklat); color: var(--kuning); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 6px 20px; border-radius: 999px; margin-bottom: 22px; }
     .hero h1 { font-family: 'Lilita One', cursive; font-size: clamp(4.5rem, 16vw, 10rem); line-height: 0.88; color: var(--coklat); text-shadow: 5px 5px 0 rgba(0,0,0,0.1); letter-spacing: -2px; }
     .hero h1 span { color: var(--merah); display: block; }
