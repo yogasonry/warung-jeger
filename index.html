@@ -397,22 +397,55 @@
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
       background: #fff;
       border: 3px solid var(--coklat);
       border-radius: 28px;
-      padding: 40px 52px;
+      padding: 44px 52px 36px;
       box-shadow: 6px 6px 0 var(--coklat);
-      max-width: 400px;
+      max-width: 420px;
+    }
+
+    .owner-photo-wrap {
+      position: relative;
+    }
+
+    .owner-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: var(--kuning);
+      border: 3px solid var(--coklat);
+      z-index: 0;
+    }
+
+    .owner-photo-wrap::after {
+      content: '👨‍🍳';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      font-size: 1.4rem;
+      z-index: 2;
+      background: var(--kuning);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid var(--coklat);
     }
 
     .owner-photo {
-      width: 110px;
-      height: 110px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       border: 4px solid var(--coklat);
       object-fit: cover;
-      box-shadow: 4px 4px 0 var(--kuning-tua);
+      position: relative;
+      z-index: 1;
+      display: block;
     }
 
     .owner-name {
@@ -536,6 +569,48 @@
           <div class="menu-desc">Tempe, tahu, bakwan — panas-panas</div>
         </div>
       </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🥥</div>
+        <div>
+          <div class="menu-name">Sayur Lodeh</div>
+          <div class="menu-desc">Santan gurih, sayur lengkap</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🥬</div>
+        <div>
+          <div class="menu-name">Urap Sayur</div>
+          <div class="menu-desc">Segar, kelapa berbumbu rempah</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🌿</div>
+        <div>
+          <div class="menu-name">Pepes Tahu</div>
+          <div class="menu-desc">Dibungkus daun, harum dan lembut</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🐟</div>
+        <div>
+          <div class="menu-name">Pepes Tongkol</div>
+          <div class="menu-desc">Ikan bumbu pedas, wangi daun kemangi</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🌱</div>
+        <div>
+          <div class="menu-name">Tumis Kangkung</div>
+          <div class="menu-desc">Pedas, crunchy, bikin nambah nasi</div>
+        </div>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon">🍳</div>
+        <div>
+          <div class="menu-name">Telor Orak-Arik Sosis</div>
+          <div class="menu-desc">Comfort food sejati, nggak ada duanya</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -569,9 +644,11 @@
       <h2 class="section-title">Meet the Boss</h2>
     </div>
     <div class="owner-card reveal">
-      <img class="owner-photo"
-           src="https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227891/preview_itmdfm.webp"
-           alt="Jack Sunardi - Owner Warung Jeger" />
+      <div class="owner-photo-wrap">
+        <img class="owner-photo"
+             src="https://res.cloudinary.com/dqqdjhb2x/image/upload/v1773227891/preview_itmdfm.webp"
+             alt="Jack Sunardi - Owner Warung Jeger" />
+      </div>
       <div>
         <div class="owner-name">Jack Sunardi</div>
         <div class="owner-role">Founder & Owner</div>
